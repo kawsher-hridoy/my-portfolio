@@ -34,24 +34,28 @@ git worktree add -b codex/portfolio ../worktrees/codex
 
 ## Variant: `claude/portfolio`
 
-Static, dependency-free build — no framework, no `node_modules`, no build step.
+**Two files. No JavaScript. No build step. No dependencies.**
 
-**Files:** `index.html`, `assets/css/style.css`, `assets/js/main.js`, `favicon.svg`,
-`robots.txt`, `vercel.json`.
+**Files:** `index.html`, `style.css`.
 
-**Design direction:** telemetry / systems. Near-black base, a single signal-blue accent,
-monospace for anything that is data, medal colours reserved for the 2026 record. The hero
-runs a slow oscilloscope trace — an event spike sweeping across a noisy baseline, echoing
-the failure-countdown work in Autopilot. Dark and light themes, `prefers-reduced-motion`
-respected, and the canvas pauses when off-screen or when the tab is hidden.
+**Design:** one dark theme, system font stack (no web fonts, so nothing is fetched from a
+third party), no JavaScript at all. The only external request the page makes is the GitHub
+avatar, which sits behind a CSS monogram fallback — if it fails to load you see "KH", not a
+broken image. The favicon is an inline `data:` URI so it costs no extra file.
+
+**Content:** hero, the five 2026 competition results, the four systems, and contact links.
+Sourced from `cortexcrew.vercel.app/kawsher-hridoy` and the `kawsher-hridoy` GitHub profile.
 
 **Preview locally:**
 
 ```bash
 cd ../worktrees/claude
 python3 -m http.server 8137
-# open http://127.0.0.1:8137
+# open http://localhost:8137
 ```
 
-**Deploy:** Vercel serves the repo root as-is. `vercel.json` adds cache and security headers.
-No build command or output directory needed.
+**Deploy:** a static host serves these two files as-is — no build command, no output
+directory. On Vercel, set the framework preset to "Other" and leave the build command empty.
+
+> An earlier, more elaborate variant of this branch (canvas hero, theme toggle, scroll
+> animations, 7 files) is preserved at commit `ce1742b` if you want to compare.

@@ -1,0 +1,345 @@
+/* ─────────────────────────────────────────────────────────────────
+   Kawsher HRidoy — portfolio
+   Variant: claude/portfolio (simple). One file of CSS, no JavaScript.
+   ───────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:      #0b0d12;
+  --surface: #12151d;
+  --line:    #232733;
+  --fg:      #e8eaf0;
+  --muted:   #9aa1b1;
+  --dim:     #6f7789;
+  --accent:  #6aa6ff;
+  --gold:    #e8b950;
+  --silver:  #b9c3d4;
+
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+          Arial, "Noto Sans", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --wrap: 62rem;
+  --pad: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.skip:focus { top: 1rem; }
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+.top { border-bottom: 1px solid var(--line); }
+
+.top__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  flex-wrap: wrap;
+  padding-block: 1rem;
+}
+
+.top__name { font-weight: 600; letter-spacing: -0.01em; }
+
+.top__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  font-size: 0.92rem;
+}
+.top__nav a { color: var(--muted); }
+.top__nav a:hover { color: var(--fg); }
+
+/* ── Hero ────────────────────────────────────────────────────── */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 5vw, 2.75rem);
+  flex-wrap: wrap;
+  padding-block: clamp(2.75rem, 8vw, 4.5rem);
+}
+
+.hero__portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(6rem, 18vw, 8.5rem);
+  aspect-ratio: 1;
+  flex: none;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Monogram shows through only if the avatar below fails to load. */
+.hero__portrait::before { content: "KH"; }
+
+.hero__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background-image: url("https://avatars.githubusercontent.com/u/195350490?v=4");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__text { flex: 1 1 22rem; min-width: 0; }
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.hero__role {
+  margin-top: 0.6rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: var(--muted);
+}
+.hero__role strong { color: var(--fg); font-weight: 600; }
+
+.hero__bio {
+  margin-top: 1.25rem;
+  max-width: 46rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.hero__meta {
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--dim);
+}
+
+.hero__links {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.05rem;
+  border-radius: 9px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.btn:hover { text-decoration: none; opacity: 0.9; }
+
+.btn--ghost {
+  background: none;
+  border-color: var(--line);
+  color: var(--fg);
+}
+.btn--ghost:hover { border-color: var(--accent); }
+
+/* ── Blocks ──────────────────────────────────────────────────── */
+.block {
+  padding-block: clamp(2.5rem, 7vw, 3.75rem);
+  border-top: 1px solid var(--line);
+}
+
+h2 {
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  letter-spacing: -0.02em;
+  font-weight: 650;
+}
+
+.block__sub {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  max-width: 46rem;
+  text-wrap: pretty;
+}
+
+/* ── Record ──────────────────────────────────────────────────── */
+.record { margin-top: 2rem; }
+
+.record__row {
+  display: grid;
+  grid-template-columns: 6rem 11rem 1fr;
+  gap: 0.35rem 1.25rem;
+  align-items: baseline;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+.record__row:last-child { border-bottom: 1px solid var(--line); }
+
+.record__date {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--dim);
+}
+
+.record__row .badge { justify-self: start; }
+
+.record__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.7rem;
+}
+.record__body strong { font-weight: 600; }
+
+.record__org {
+  flex-basis: 100%;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ── Badges and chips ────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.badge--gold   { color: var(--gold);   border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.badge--silver { color: var(--silver); border-color: color-mix(in srgb, var(--silver) 40%, transparent); }
+
+.chip {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 5px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+/* ── Work grid ───────────────────────────────────────────────── */
+.grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.4rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.card h3 { font-size: 1.15rem; letter-spacing: -0.015em; }
+
+.card p { font-size: 0.94rem; color: var(--muted); text-wrap: pretty; }
+
+.card__tag { color: var(--fg) !important; }
+
+.card__stack {
+  font-family: var(--mono);
+  font-size: 0.74rem !important;
+  color: var(--dim) !important;
+}
+
+.card__foot {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card__note {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--dim);
+}
+
+.card__link { font-size: 0.85rem; font-weight: 600; }
+
+/* ── Contact ─────────────────────────────────────────────────── */
+.contact__mail { margin-top: 1.75rem; }
+
+.contact__mail a {
+  font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.contact__links {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.94rem;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.foot {
+  border-top: 1px solid var(--line);
+  padding-block: 1.75rem;
+  font-size: 0.86rem;
+  color: var(--dim);
+}
+
+/* ── Narrow screens ──────────────────────────────────────────── */
+@media (max-width: 40rem) {
+  .record__row {
+    grid-template-columns: 1fr auto;
+  }
+  .record__date { grid-column: 1; }
+  .badge { grid-column: 2; justify-self: end; }
+  .record__body { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
